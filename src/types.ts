@@ -12,4 +12,8 @@ export type ModelResult = {
   raw?: string;
   score?: number;
   pass: boolean;
+  tokens?: number;
+  cost?: number;
+  promptTokens?: number;
+  completionTokens?: number;
 };

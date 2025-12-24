@@ -32,6 +32,10 @@ export function saveCSV(
     "score",
     "raw",
   ];
+  // include tokens and cost in CSV
+  header.push("tokens", "cost");
+  // include prompt/completion tokens
+  header.push("promptTokens", "completionTokens");
   rows.push(header.join(","));
 
   for (const [model, v] of Object.entries(allResults)) {
@@ -47,6 +51,10 @@ export function saveCSV(
         r.pass ? "1" : "0",
         r.score != null ? String(r.score) : "",
         r.raw ? String(r.raw).replace(/\r?\n/g, " ") : "",
+        r.tokens != null ? String(r.tokens) : "",
+        r.cost != null ? String(r.cost) : "",
+        r.promptTokens != null ? String(r.promptTokens) : "",
+        r.completionTokens != null ? String(r.completionTokens) : "",
       ].map((c) => escapeCsv(String(c)));
       rows.push(cols.join(","));
     }

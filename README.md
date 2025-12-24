@@ -39,7 +39,16 @@ The CLI will automatically load variables from a `.env` file if present. Copy `.
 - Run the benchmark for the default model (you can pass models):
 
 ```bash
+# Run a set of models explicitly:
 bun run src/index.ts --models=openai/gpt-4o,google/gemini-3
+
+# Or use the built-in `models.json` list (default). To point at another list:
+bun run src/index.ts --models-file=./my-models.json
+
+# Quick smoke test mode (runs a single small model):
+bun run src/index.ts --mode=test
+OR
+bun run src/index.ts --test
 ```
 
 Or supply the API key inline (not recommended for security):
