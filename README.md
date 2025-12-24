@@ -71,3 +71,12 @@ Notes:
 - Scoring is a simple normalized comparison with some tolerance via Levenshtein distance; you can extend `src/scorer.ts` for richer evaluation.
 
 If you'd like, I can add CSV/JSON exporters, more advanced scoring (e.g., synonyms), or a test harness for running many models in parallel. ✅
+
+## Visualizer
+
+There is a small Next.js visualizer in the `web/` folder. To run it:
+
+1. cd web && bun install
+2. bun run dev
+
+Open http://localhost:3000 to view results (the app reads `results_test.json` if present, otherwise `results.json`).

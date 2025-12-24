@@ -6,6 +6,14 @@
   "scripts": {
     "start": "bun run src/index.ts",
     "bench": "bun run src/index.ts",
+    "bench:test": "bun run src/index.ts --test",
+    "bench:small": "bun run src/index.ts --concurrency=2 --model-concurrency=1",
+    "bench:default": "bun run src/index.ts --concurrency=4 --model-concurrency=2",
+    "bench:parallel": "bun run src/index.ts --concurrency=8 --model-concurrency=4",
+    "bench:ci": "bun run src/index.ts --test --concurrency=2 --model-concurrency=1",
+    "web:dev": "cd web && bun install && bun run dev",
+    "web:start": "cd web && bun run start",
+    "web:build": "cd web && bun run build",
     "lint": "bun run -c 'echo No lint configured'"
   },
   "dependencies": {

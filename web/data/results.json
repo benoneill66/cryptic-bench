@@ -1,0 +1,280 @@
+{
+  "openai/gpt-4o": {
+    "total": 11,
+    "passCount": 5,
+    "passRate": 0.45454545454545453,
+    "results": [
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e1",
+        "answer": "trombonist",
+        "raw": "{\"answer\":\"trombonist\",\"reasoning\":\"A trombonist uses a slide to play their instrument, fitting the clue of a player with skills on the slide.\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e2",
+        "answer": "limp",
+        "raw": "{\"answer\":\"limp\",\"reasoning\":\"'Picking up' indicates a homophone; 'slipper' is a type of shoe, which sounds like 'limp', meaning 'cry weakly'.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e3",
+        "answer": "eucalyptus",
+        "raw": "{\"answer\":\"eucalyptus\",\"reasoning\":\"Anagram of 'sup tea Lucy' indicated by 'mashed', eucalyptus is known as a cold remedy.\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e4",
+        "answer": "scam",
+        "raw": "{\"answer\":\"scam\",\"reasoning\":\"'Strictly's first' gives 'S', 'celebrity turned' suggests an anagram of 'cam' (from 'cam' in 'camera', a synonym for celebrity), forming 'scam', which is a synonym for 'wide boy'.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e5",
+        "answer": "realm",
+        "raw": "{\"answer\":\"realm\",\"reasoning\":\"'Reform' indicates an anagram. 'A law' is anagrammed to form 'realm', which means 'country'.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e6",
+        "answer": "duchess",
+        "raw": "{\"answer\":\"duchess\",\"reasoning\":\"'Watering holes' are 'duches' (sounds like 'douches'), 'my' is 's', and 'posh' is 'u' (upper class), forming 'duchess', a noble lady.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e7",
+        "answer": "natural minor",
+        "raw": "{\"answer\":\"natural minor\",\"reasoning\":\"'Greek character' is 'nu', 'probing' means inserted into 'dictionary' which is 'lexicon' without first and last letters ('uncovered'), giving 'exico'. 'Nice' is 'natural'. 'Classical notes' refers to 'minor' scale. Combined: 'natural minor'.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e8",
+        "answer": "blabbermouth",
+        "raw": "{\"answer\":\"blabbermouth\",\"reasoning\":\"Anagram of 'brutal bomb he' (indicated by 'detonated'), meaning 'one full of gas' (talkative person).\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e9",
+        "answer": "chrome",
+        "raw": "{\"answer\":\"chrome\",\"reasoning\":\"'Shiny metal' is the definition. 'Taps' indicates the word 'ch' (abbreviation for church) is in front of 'rome' (a type of tap).\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e10",
+        "answer": "veal",
+        "raw": "{\"answer\":\"veal\",\"reasoning\":\"'Young animal's meat' is 'veal'. 'Heartless' means to remove the middle letter from 'veal', but since 'veal' is already a 4-letter word fitting the clue, it is the answer.\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o",
+        "clueId": "e11",
+        "answer": "magic lamp",
+        "raw": "{\"answer\":\"magic lamp\",\"reasoning\":\"The 'magic lamp' is the object in Aladdin's story that brings illumination, both literally and metaphorically, by summoning the genie.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      }
+    ]
+  },
+  "google/gemini-2.5-pro": {
+    "total": 11,
+    "passCount": 0,
+    "passRate": 0,
+    "results": [
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e1",
+        "answer": "```json\n{\n",
+        "raw": "```json\n{\n",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e2",
+        "answer": "```json\n{\n  \"answer",
+        "raw": "```json\n{\n  \"answer",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e3",
+        "answer": "```json\n{\n",
+        "raw": "```json\n{\n",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e4",
+        "answer": "```json\n{\n  \"answer",
+        "raw": "```json\n{\n  \"answer",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e5",
+        "answer": "```json\n{\n  ",
+        "raw": "```json\n{\n  ",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e6",
+        "answer": "```json\n{\n  \"",
+        "raw": "```json\n{\n  \"",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e7",
+        "answer": "```json\n{\n  \"answer",
+        "raw": "```json\n{\n  \"answer",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e8",
+        "answer": "```json\n{\n",
+        "raw": "```json\n{\n",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e9",
+        "answer": "```json\n{\n  ",
+        "raw": "```json\n{\n  ",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e10",
+        "answer": "```json\n{\n",
+        "raw": "```json\n{\n",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-2.5-pro",
+        "clueId": "e11",
+        "answer": "```json\n{\n  ",
+        "raw": "```json\n{\n  ",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      }
+    ]
+  }
+}

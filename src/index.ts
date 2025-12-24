@@ -5,6 +5,7 @@ dotenv.config();
 import fs from "fs";
 import path from "path";
 import { runBenchmark } from "./benchmark";
+import { MODEL_NAMES } from "./models";
 import type { Clue } from "./types";
 import { prettyPercent } from "./scorer";
 import { saveJSON, saveCSV, ensureDirForFile } from "./exporter";
@@ -28,19 +29,25 @@ async function main() {
   } else if (modelsArg) {
     modelList = modelsArg.replace("--models=", "").split(",");
   } else {
-    // Try to load models.json (or provided file) as the default list
-    let modelsFile = path.resolve(process.cwd(), "models.json");
+    // Default: use the TypeScript models export. If a specific models file is
+    // provided via --models-file we still load it for backward compatibility.
     if (modelsFileArg) {
+      let modelsFile = path.resolve(process.cwd(), "models.json");
       const m = modelsFileArg.split(/=(.+)/)[1];
       if (m && m.trim()) modelsFile = m;
-    }
-    try {
-      const raw = fs.readFileSync(modelsFile, "utf-8");
-      modelList = JSON.parse(raw) as string[];
-      console.log("Loaded models from", modelsFile);
-    } catch (err) {
-      modelList = ["openai/gpt-4o"];
-      console.log("No models file found; defaulting to", modelList.join(","));
+      try {
+        const raw = fs.readFileSync(modelsFile, "utf-8");
+        modelList = JSON.parse(raw) as string[];
+        console.log("Loaded models from", modelsFile);
+      } catch (err) {
+        modelList = MODEL_NAMES.slice();
+        console.log(
+          "Failed to load provided models file; falling back to TypeScript models export"
+        );
+      }
+    } else {
+      modelList = MODEL_NAMES.slice();
+      console.log("Loaded models from TypeScript export (src/models.ts)");
     }
   }
   const apiKey = apiKeyArg ? apiKeyArg.replace("--api-key=", "") : undefined;
@@ -55,23 +62,56 @@ async function main() {
   console.log("Running cryptic benchmark");
   console.log("Models:", modelList.join(", "));
   console.log("Clues:", clues.length);
-
   const allResults: Record<string, any> = {};
 
-  for (const model of modelList) {
-    console.log(`\n▶ Running model ${model} ...`);
-    const res = await runBenchmark(clues, { model, apiKey, temperature: 0.0 });
-    const total = res.length;
-    const passCount = res.filter((r) => r.pass).length;
-    const passRate = passCount / total;
-    allResults[model] = { total, passCount, passRate, results: res };
+  // Parse concurrency flags
+  const concurrencyArg = args.find((a) => a.startsWith("--concurrency="));
+  const clueConcurrency = concurrencyArg
+    ? Number(concurrencyArg.split(/=(.+)/)[1])
+    : 4;
 
-    console.log(
-      `Model ${model}: ${passCount}/${total} passed, pass rate ${prettyPercent(
-        passRate
-      )}`
-    );
+  const modelConcurrencyArg = args.find((a) =>
+    a.startsWith("--model-concurrency=")
+  );
+  const modelConcurrency = modelConcurrencyArg
+    ? Math.max(1, Number(modelConcurrencyArg.split(/=(.+)/)[1]))
+    : Math.min(4, modelList.length);
+
+  console.log(
+    `Running models with model-concurrency=${modelConcurrency} and clue-concurrency=${clueConcurrency}`
+  );
+
+  // Worker pool for models so we can run several models concurrently without exhausting resources
+  let nextModelIdx = 0;
+  async function modelWorker() {
+    while (true) {
+      const idx = nextModelIdx++;
+      if (idx >= modelList.length) return;
+      const model = modelList[idx]!;
+      console.log(`\n▶ Running model ${model} ...`);
+      const res = await runBenchmark(clues, {
+        model,
+        apiKey,
+        temperature: 0.0,
+        concurrency: clueConcurrency,
+      });
+      const total = res.length;
+      const passCount = res.filter((r) => r.pass).length;
+      const passRate = passCount / total;
+      allResults[model] = { total, passCount, passRate, results: res };
+
+      console.log(
+        `Model ${model}: ${passCount}/${total} passed, pass rate ${prettyPercent(
+          passRate
+        )}`
+      );
+    }
   }
+
+  const modelWorkers = new Array(Math.min(modelConcurrency, modelList.length))
+    .fill(0)
+    .map(() => modelWorker());
+  await Promise.all(modelWorkers);
 
   // Ranking
   const ranking = Object.entries(allResults)
@@ -109,6 +149,28 @@ async function main() {
     } catch (err) {
       console.error("Failed to save results:", err);
     }
+  }
+
+  // Also save a copy into the web visualizer's data directory so the UI can
+  // load results locally when running the dev server. We save both a
+  // timestamped file and a stable `results.json` (and `results_test.json` in
+  // test mode).
+  try {
+    const webDataDir = path.resolve(process.cwd(), "web", "data");
+    const webResultsPath = path.join(webDataDir, "results.json");
+    ensureDirForFile(webResultsPath);
+    saveJSON(webResultsPath, allResults);
+    if (isTest) {
+      const webTestPath = path.join(webDataDir, "results_test.json");
+      saveJSON(webTestPath, allResults);
+    }
+    // timestamped copy
+    const ts = new Date().toISOString().replace(/[:.]/g, "-");
+    const webTsPath = path.join(webDataDir, `results-${ts}.json`);
+    saveJSON(webTsPath, allResults);
+    console.log(`Also saved copy to ${webDataDir}`);
+  } catch (err) {
+    console.error("Failed to save web copy of results:", err);
   }
 }
 
