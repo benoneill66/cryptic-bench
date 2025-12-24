@@ -14,7 +14,7 @@ async function main() {
   const modelsArg = args.find((a) => a.startsWith("--models="));
   const modelsFileArg = args.find((a) => a.startsWith("--models-file="));
   const modeArg = args.find((a) => a.startsWith("--mode=")) || null;
-  const isTest = args.includes('--test') || modeArg === '--mode=test';
+  const isTest = args.includes("--test") || modeArg === "--mode=test";
   const apiKeyArg = args.find((a) => a.startsWith("--api-key="));
   const outArg = args.find(
     (a) => a.startsWith("--out=") || a.startsWith("--output=")
@@ -24,23 +24,23 @@ async function main() {
   if (isTest) {
     // Test mode runs a single small/fast model
     modelList = ["openai/gpt-4o-mini"];
-    console.log('Running in TEST mode — only running', modelList.join(','));
+    console.log("Running in TEST mode — only running", modelList.join(","));
   } else if (modelsArg) {
     modelList = modelsArg.replace("--models=", "").split(",");
   } else {
     // Try to load models.json (or provided file) as the default list
-    let modelsFile = path.resolve(process.cwd(), 'models.json');
+    let modelsFile = path.resolve(process.cwd(), "models.json");
     if (modelsFileArg) {
       const m = modelsFileArg.split(/=(.+)/)[1];
       if (m && m.trim()) modelsFile = m;
     }
     try {
-      const raw = fs.readFileSync(modelsFile, 'utf-8');
+      const raw = fs.readFileSync(modelsFile, "utf-8");
       modelList = JSON.parse(raw) as string[];
-      console.log('Loaded models from', modelsFile);
+      console.log("Loaded models from", modelsFile);
     } catch (err) {
       modelList = ["openai/gpt-4o"];
-      console.log('No models file found; defaulting to', modelList.join(','));
+      console.log("No models file found; defaulting to", modelList.join(","));
     }
   }
   const apiKey = apiKeyArg ? apiKeyArg.replace("--api-key=", "") : undefined;
