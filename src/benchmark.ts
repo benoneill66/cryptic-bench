@@ -86,57 +86,89 @@ export async function runBenchmark(
       );
 
       try {
-        const resp = await client.chat.send({
-          model: options.model,
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are an expert cryptic crossword solver. Provide concise JSON only.",
-            },
-            { role: "user", content: prompt },
-          ],
-          maxTokens: options.maxTokens ?? 200,
-          temperature: options.temperature ?? 0.0,
-          stream: false,
-        });
-
-        // Normalize message content to a string (SDK may return string or structured content)
-        const content = resp.choices?.[0]?.message?.content;
-        let raw = "";
-        if (typeof content === "string") {
-          raw = content;
-        } else if (Array.isArray(content)) {
-          raw = content
-            .map((it: any) =>
-              typeof it === "string" ? it : it?.text ?? it?.content ?? ""
-            )
-            .join(" ");
-        } else {
-          raw = String(content ?? "");
-        }
-
-        // Sanitize raw output to remove code fences like ```json ... ```
-        raw = sanitizeRawText(raw);
-
-        let answerText = raw;
-
+        // Try to use Vercel AI SDK's generateObject to get structured output
+        // directly; fall back to the existing chat send if generateObject is
+        // unavailable or fails.
+        let resp: any = null;
+        let usedGenerateObject = false;
         try {
-          // try parse JSON
-          const parsed = JSON.parse(raw);
-          if (
-            typeof parsed === "object" &&
-            parsed !== null &&
-            "answer" in parsed
-          ) {
-            answerText = String((parsed as any).answer);
+          const ai = await import("ai");
+          const zod = await import("zod");
+          const schema = zod.z.object({
+            answer: zod.z.string(),
+            reasoning: zod.z.string().optional(),
+          });
+
+          const gen = await ai.generateObject({
+            model: options.model,
+            prompt: prompt,
+            schema,
+          });
+
+          const genResult = gen as any;
+          if (genResult && genResult.answer) {
+            usedGenerateObject = true;
+            resp = { usage: gen?.usage ?? null, _generated: genResult };
           }
         } catch (e) {
-          // fallback: try to extract answer using a regex that finds a quoted string or a bare word
-          const m =
-            (raw as string).match(/"answer"\s*:\s*"([^\"]+)"/i) ||
-            (raw as string).match(/answer\s*[:=]\s*([A-Za-z0-9'\- ]+)/i);
-          if (m && m[1]) answerText = m[1].trim();
+          usedGenerateObject = false;
+        }
+
+        if (!usedGenerateObject) {
+          resp = await client.chat.send({
+            model: options.model,
+            messages: [
+              {
+                role: "system",
+                content:
+                  "You are an expert cryptic crossword solver. Provide concise JSON only.",
+              },
+              { role: "user", content: prompt },
+            ],
+            maxTokens: options.maxTokens ?? 200,
+            temperature: options.temperature ?? 0.0,
+            stream: false,
+          });
+        }
+
+        // Normalize message content to a string (SDK may return string or structured content)
+        let raw = "";
+        let answerText = "";
+        if (resp && resp._generated) {
+          // Output from generateObject
+          raw = sanitizeRawText(JSON.stringify(resp._generated));
+          answerText = String(resp._generated.answer ?? "");
+        } else {
+          const content = resp.choices?.[0]?.message?.content;
+          if (typeof content === "string") {
+            raw = content;
+          } else if (Array.isArray(content)) {
+            raw = content
+              .map((it: any) => (typeof it === "string" ? it : it?.text ?? it?.content ?? ""))
+              .join(" ");
+          } else {
+            raw = String(content ?? "");
+          }
+
+          // Sanitize raw output to remove code fences like ```json ... ```
+          raw = sanitizeRawText(raw);
+
+          // try parse JSON
+          try {
+            const parsed = JSON.parse(raw);
+            if (typeof parsed === "object" && parsed !== null && "answer" in parsed) {
+              answerText = String((parsed as any).answer);
+            } else {
+              answerText = raw;
+            }
+          } catch (e) {
+            // fallback: try to extract answer using a regex that finds a quoted string or a bare word
+            const m =
+              (raw as string).match(/"answer"\s*:\s*"([^\"]+)"/i) ||
+              (raw as string).match(/answer\s*[:=]\s*([A-Za-z0-9'\- ]+)/i);
+            if (m && m[1]) answerText = m[1].trim();
+            else answerText = raw;
+          }
         }
 
         const score = scoreAnswer(clue.answer, answerText);
@@ -189,12 +221,13 @@ export async function runBenchmark(
       } catch (err: any) {
         const t1 = Date.now();
         const took = t1 - t0;
-        console.log(`→ Error: ${String(err?.message ?? err)} (${took}ms)`);
+        const errMsg = sanitizeRawText(String(err?.message ?? err));
+        console.log(`→ Error: ${errMsg} (${took}ms)`);
         results[idx] = {
           model: options.model,
           clueId: clue.id,
           answer: "",
-          raw: String(err?.message ?? err),
+          raw: errMsg,
           score: 0,
           pass: false,
           tokens: 0,
