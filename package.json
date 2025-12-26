@@ -1,5 +1,9 @@
 {
-  "name": "cryptic-bench",
+  "name": "cryptic-bench-monorepo",
+  "workspaces": [
+    "web",
+    "packages/*"
+  ],
   "module": "index.ts",
   "type": "module",
   "private": true,
@@ -11,9 +15,12 @@
     "bench:default": "bun run src/index.ts --concurrency=4 --model-concurrency=2",
     "bench:parallel": "bun run src/index.ts --concurrency=8 --model-concurrency=4",
     "bench:ci": "bun run src/index.ts --test --concurrency=2 --model-concurrency=1",
-    "web:dev": "cd web && bun install && bun run dev",
-    "web:start": "cd web && bun run start",
-    "web:build": "cd web && bun run build",
+    "install:all": "bun install",
+    "dev:web": "cd web && bun run dev",
+    "dev:cli": "bun run src/index.ts",
+    "dev:all": "bun run dev:web & bun run dev:cli",
+    "build:web": "cd web && bun run build",
+    "build:all": "bun run build:web",
     "lint": "bun run -c 'echo No lint configured'"
   },
   "dependencies": {

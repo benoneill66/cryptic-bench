@@ -1,10 +1,21 @@
-# cryptic-bench
+# cryptic-bench-monorepo
 
-To install dependencies:
+A monorepo containing a CLI tool for benchmarking LLMs on cryptic crossword clues and a Next.js web visualizer.
+
+## Project Structure
+
+- **Root**: CLI tool and benchmark logic
+- **web/**: Next.js web application for visualizing results
+- **packages/shared/**: Shared TypeScript types and utilities
+
+## Setup
 
 ```bash
+# Install all dependencies at once
 bun install
 ```
+
+This uses Bun workspaces to manage dependencies across all packages.
 
 To run:
 
@@ -36,7 +47,9 @@ The CLI will automatically load variables from a `.env` file if present. Copy `.
 
 ### Usage
 
-- Run the benchmark for the default model (you can pass models):
+#### CLI Tool
+
+Run benchmarks from the root:
 
 ```bash
 # Run a set of models explicitly:
@@ -49,6 +62,38 @@ bun run src/index.ts --models-file=./my-models.json
 bun run src/index.ts --mode=test
 OR
 bun run src/index.ts --test
+```
+
+#### Web Visualizer
+
+Start the Next.js development server:
+
+```bash
+bun run dev:web
+```
+
+Open http://localhost:3000 to view results (the app reads `results_test.json` if present, otherwise `results.json`).
+
+#### Development Scripts
+
+```bash
+# Install dependencies for all packages
+bun run install:all
+
+# Run CLI tool only
+bun run dev:cli
+
+# Run web visualizer only
+bun run dev:web
+
+# Run both CLI and web (in parallel)
+bun run dev:all
+
+# Build web application
+bun run build:web
+
+# Run all builds
+bun run build:all
 ```
 
 Or supply the API key inline (not recommended for security):
@@ -70,13 +115,9 @@ Notes:
 - This is a starting scaffold — replace the example clues with an authoritative set of cryptic clues and expected answers.
 - Scoring is a simple normalized comparison with some tolerance via Levenshtein distance; you can extend `src/scorer.ts` for richer evaluation.
 
+Notes:
+
+- This is a starting scaffold — replace the example clues with an authoritative set of cryptic clues and expected answers.
+- Scoring is a simple normalized comparison with some tolerance via Levenshtein distance; you can extend `src/scorer.ts` for richer evaluation.
+
 If you'd like, I can add CSV/JSON exporters, more advanced scoring (e.g., synonyms), or a test harness for running many models in parallel. ✅
-
-## Visualizer
-
-There is a small Next.js visualizer in the `web/` folder. To run it:
-
-1. cd web && bun install
-2. bun run dev
-
-Open http://localhost:3000 to view results (the app reads `results_test.json` if present, otherwise `results.json`).
