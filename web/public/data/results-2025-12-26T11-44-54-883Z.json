@@ -1,0 +1,141 @@
+{
+  "openai/gpt-4o-mini": {
+    "total": 11,
+    "passCount": 0,
+    "passRate": 0,
+    "results": [
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e1",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e2",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e3",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e4",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e5",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e6",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e7",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e8",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e9",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e10",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e11",
+        "answer": "",
+        "raw": "Provider returned error",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      }
+    ]
+  }
+}
