@@ -1,0 +1,141 @@
+{
+  "google/gemini-3-flash": {
+    "total": 11,
+    "passCount": 0,
+    "passRate": 0,
+    "results": [
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e1",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e2",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e3",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e4",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e5",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e6",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e7",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e8",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e9",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e10",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      },
+      {
+        "model": "google/gemini-3-flash",
+        "clueId": "e11",
+        "answer": "",
+        "raw": "google/gemini-3-flash is not a valid model ID",
+        "score": 0,
+        "pass": false,
+        "tokens": 0,
+        "promptTokens": 0,
+        "completionTokens": 0,
+        "cost": 0
+      }
+    ]
+  }
+}

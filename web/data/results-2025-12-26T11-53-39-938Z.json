@@ -1,0 +1,141 @@
+{
+  "google/gemini-3-flash-preview": {
+    "total": 11,
+    "passCount": 7,
+    "passRate": 0.6363636363636364,
+    "results": [
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e1",
+        "answer": "TROMBONIST",
+        "raw": "{\"answer\":\"TROMBONIST\",\"reasoning\":\"A trombonist is a musical player who uses a slide to change notes, making the clue a cryptic definition.\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 122,
+        "promptTokens": 87,
+        "completionTokens": 35,
+        "cost": 0.00045875000000000006
+      },
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e2",
+        "answer": "MEWL",
+        "raw": "{\"answer\":\"MEWL\",\"reasoning\":\"'Picking up' indicates a homophone. A 'mule' is a type of slipper, and its homophone 'mewl' means to cry weakly.\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 128,
+        "promptTokens": 84,
+        "completionTokens": 44,
+        "cost": 0.000545
+      },
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e3",
+        "answer": "EUCALYPTUS",
+        "raw": "{\"answer\":\"EUCALYPTUS\",\"reasoning\":\"An anagram ('mashed') of 'SUP TEA LUCY' gives 'EUCALYPTUS', which is a common cold remedy.\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 128,
+        "promptTokens": 87,
+        "completionTokens": 41,
+        "cost": 0.0005187500000000001
+      },
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e4",
+        "answer": "SPIV",
+        "raw": "{\"answer\":\"SPIV\",\"reasoning\":\"'Strictly's first' is S, 'celebrity' is VIP. S + VIP reversed ('turned') is SPIV, which means 'wide boy'.\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 130,
+        "promptTokens": 86,
+        "completionTokens": 44,
+        "cost": 0.0005475
+      },
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e5",
+        "answer": "ARMADA",
+        "raw": "{\"answer\":\"ARMADA\",\"reasoning\":\"An anagram (reform) of 'A LAW' and 'AD' (intended/advertisement) or more simply an anagram of 'A LAW' + 'AD' = ARMADA, which is a fleet intended to protect (or attack) a country.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 148,
+        "promptTokens": 86,
+        "completionTokens": 62,
+        "cost": 0.0007275000000000001
+      },
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e6",
+        "answer": "BARONESS",
+        "raw": "{\"answer\":\"BARONESS\",\"reasoning\":\"'Watering holes' are BARS, 'my' is ONE'S (in cryptic terms), and 'posh' is U. BARS + ONE'S + U = BARONESS (a noble lady).\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 142,
+        "promptTokens": 85,
+        "completionTokens": 57,
+        "cost": 0.0006762500000000001
+      },
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e7",
+        "answer": "{\"answer\":\"PHRYGIAN MODES\",\"reasoning\":\"PHI (Greek character) around (probing) REF (dictionary) + GIAN (uncovered 'nice' is 'ice', but 'nice' is 'GIAN' in some contexts? No: PHI around RY (dictionary/ref) + GIAN (uncovered 'nice' is 'ice') - wait: PHI (Greek character) around (probing) RY (dictionary) + GIAN (uncovered 'nice') + MODES (classical notes). Actually: PHI around RY + GIAN (uncovered 'nice' is 'ice'?) No: PHI + RY (dictionary) + GIAN (uncovered 'nice') + MODES. Correct: PHI (Greek character) probing RY (dictionary) + GIAN (uncovered 'nice' is 'ice'?) No: PHI + RY + GIAN + MODES. Let's",
+        "raw": "{\"answer\":\"PHRYGIAN MODES\",\"reasoning\":\"PHI (Greek character) around (probing) REF (dictionary) + GIAN (uncovered 'nice' is 'ice', but 'nice' is 'GIAN' in some contexts? No: PHI around RY (dictionary/ref) + GIAN (uncovered 'nice' is 'ice') - wait: PHI (Greek character) around (probing) RY (dictionary) + GIAN (uncovered 'nice') + MODES (classical notes). Actually: PHI around RY + GIAN (uncovered 'nice' is 'ice'?) No: PHI + RY (dictionary) + GIAN (uncovered 'nice') + MODES. Correct: PHI (Greek character) probing RY (dictionary) + GIAN (uncovered 'nice' is 'ice'?) No: PHI + RY + GIAN + MODES. Let's",
+        "score": 0,
+        "pass": false,
+        "tokens": 284,
+        "promptTokens": 88,
+        "completionTokens": 196,
+        "cost": 0.0020700000000000002
+      },
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e8",
+        "answer": "BROMETHANEUL",
+        "raw": "{\"answer\":\"BROMETHANEUL\",\"reasoning\":\"Anagram (detonated) of 'BRUTAL BOMB HE' results in 'BROMETHANEUL', which is a gas (methyl bromide variant/related chemical name).\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 140,
+        "promptTokens": 90,
+        "completionTokens": 50,
+        "cost": 0.0006125
+      },
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e9",
+        "answer": "CHROME",
+        "raw": "{\"answer\":\"CHROME\",\"reasoning\":\"'Taps' refers to the letters C and H (Cold and Hot), which are placed in front of 'ROME' (a church, specifically the Holy See/Roman Catholic Church).\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 131,
+        "promptTokens": 83,
+        "completionTokens": 48,
+        "cost": 0.0005837500000000001
+      },
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e10",
+        "answer": "VEAL",
+        "raw": "{\"answer\":\"VEAL\",\"reasoning\":\"'Young animal's meat' is the definition (VEAL). 'For sale' is VEND, and 'that's heartless' (THAT without its middle letters) is TT, but a better fit is 'VEND' (sale) minus its 'heart' (EN) plus 'AL' (not fitting). Actually, 'VEAL' is 'VEAL' (meat), and 'VENAL' (for sale) 'heartless' (removing the middle letter N) gives VEAL.\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 205,
+        "promptTokens": 89,
+        "completionTokens": 116,
+        "cost": 0.00127125
+      },
+      {
+        "model": "google/gemini-3-flash-preview",
+        "clueId": "e11",
+        "answer": "GENIUS MOVE",
+        "raw": "{\"answer\":\"GENIUS MOVE\",\"reasoning\":\"A 'genius' (genie) was the source of illumination/help for Aladdin, and a 'move' can refer to the action of rubbing the lamp; also a cryptic definition for a clever action.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 140,
+        "promptTokens": 87,
+        "completionTokens": 53,
+        "cost": 0.0006387500000000001
+      }
+    ]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "openai/gpt-4o-mini": {
+    "total": 11,
+    "passCount": 2,
+    "passRate": 0.18181818181818182,
+    "results": [
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e1",
+        "answer": "skateboarder",
+        "raw": "{\"answer\":\"skateboarder\",\"reasoning\":\"A skateboarder is a player who uses a skateboard, and 'on the slide' refers to the sliding motion associated with skateboarding.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 132,
+        "promptTokens": 93,
+        "completionTokens": 39,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e2",
+        "answer": "weep",
+        "raw": "{\"answer\":\"weep\",\"reasoning\":\"'Cry weakly' is the definition. 'Picking up slipper' suggests a reversal or anagram, leading to 'weep' from 'pew' (a type of seat/slipper) when reversed.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 143,
+        "promptTokens": 92,
+        "completionTokens": 51,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e3",
+        "answer": "eucalyptus",
+        "raw": "{\"answer\":\"eucalyptus\",\"reasoning\":\"'Sup tea Lucy' indicates an anagram of 'tea lucy' which forms 'eucalyptus', known for its use as a cold remedy.\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 133,
+        "promptTokens": 93,
+        "completionTokens": 40,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e4",
+        "answer": "Lad",
+        "raw": "{\"answer\":\"Lad\",\"reasoning\":\"'Strictly's first' refers to the first letter of 'Strictly', which is 'S'. 'Celebrity' can refer to a 'star', and 'turned' suggests a reversal. 'Wide boy' is a slang term for a young man or 'lad'. The answer is 'Lad', which fits the definition.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 170,
+        "promptTokens": 93,
+        "completionTokens": 77,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e5",
+        "answer": "defend",
+        "raw": "{\"answer\":\"defend\",\"reasoning\":\"'Reform' indicates an anagram of 'a law', which can be rearranged to form 'defend', meaning to protect the country.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 133,
+        "promptTokens": 93,
+        "completionTokens": 40,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e6",
+        "answer": "saloons",
+        "raw": "{\"answer\":\"saloons\",\"reasoning\":\"'Watering holes' refers to bars or saloons; 'my posh' suggests 'my' in a posh way, which can be 'salon' (a place for socializing), and 'noble lady' can refer to 'lady' as 'L' (abbreviation for lady) leading to 'saloons' as the answer.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 181,
+        "promptTokens": 96,
+        "completionTokens": 85,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e7",
+        "answer": "Alpha Centauri",
+        "raw": "{\"answer\":\"Alpha Centauri\",\"reasoning\":\"'Greek character' refers to 'Alpha', 'probing' suggests 'centaur' (a creature that probes or explores), and 'dictionary uncovered' hints at 'Centauri' being a reference to classical notes or stars.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 152,
+        "promptTokens": 95,
+        "completionTokens": 57,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e8",
+        "answer": "thermobaric",
+        "raw": "{\"answer\":\"thermobaric\",\"reasoning\":\"'Brutal bomb' refers to a type of explosive, and 'he detonated' suggests an anagram of 'he' plus 'gas' (which can be interpreted as 'thermo' for heat). The entire clue leads to 'thermobaric', a type of bomb that uses gas.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 171,
+        "promptTokens": 96,
+        "completionTokens": 75,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e9",
+        "answer": "brass",
+        "raw": "{\"answer\":\"brass\",\"reasoning\":\"'Shiny metal' refers to brass, and 'taps' can mean to play a brass instrument, while 'in front of church' suggests the letter 'C' (for church) is at the front, but here it indicates the word itself.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 155,
+        "promptTokens": 93,
+        "completionTokens": 62,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e10",
+        "answer": "veal",
+        "raw": "{\"answer\":\"veal\",\"reasoning\":\"'Young animal' refers to a calf, and 'meat for sale' indicates veal, which is meat from a young calf. 'Heartless' suggests removing the 'heart' or middle letters from a word, but in this case, it reinforces the idea of young meat.\"}",
+        "score": 1,
+        "pass": true,
+        "tokens": 162,
+        "promptTokens": 95,
+        "completionTokens": 67,
+        "cost": 0
+      },
+      {
+        "model": "openai/gpt-4o-mini",
+        "clueId": "e11",
+        "answer": "magic lamp",
+        "raw": "{\"answer\":\"magic lamp\",\"reasoning\":\"The clue refers to the 'magic lamp' that Aladdin found, which brought him illumination in the form of a genie.\"}",
+        "score": 0,
+        "pass": false,
+        "tokens": 130,
+        "promptTokens": 95,
+        "completionTokens": 35,
+        "cost": 0
+      }
+    ]
+  }
+}

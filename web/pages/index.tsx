@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import BarChart from "../components/BarChart";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
+import { Header } from "../components/ui/header";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
@@ -21,29 +22,34 @@ export default function Home() {
 
   if (error)
     return (
-      <div className="container">
-        <div className="flex justify-end mb-4">
-          <Link href="/history">
-            <Button variant="outline">View History</Button>
-          </Link>
+      <>
+        <Header showHistory={true} />
+        <div className="container mx-auto px-6 py-8">
+          <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6">
+            <h2 className="text-destructive font-semibold mb-2">
+              Error Loading Results
+            </h2>
+            <p className="text-destructive/80">{String(error)}</p>
+          </div>
         </div>
-        <h1>Cryptic Benchmark Results</h1>
-        <div className="text-destructive bg-destructive/10 border border-destructive/20 rounded-md p-4 mt-4">
-          Failed to load: {String(error)}
-        </div>
-      </div>
+      </>
     );
+
   if (!data)
     return (
-      <div className="container">
-        <div className="flex justify-end mb-4">
-          <Link href="/history">
-            <Button variant="outline">View History</Button>
-          </Link>
+      <>
+        <Header showHistory={true} />
+        <div className="container mx-auto px-6 py-8">
+          <div className="flex items-center justify-center py-12">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+              <p className="text-muted-foreground">
+                Loading benchmark results...
+              </p>
+            </div>
+          </div>
         </div>
-        <h1>Cryptic Benchmark Results</h1>
-        <div>Loading...</div>
-      </div>
+      </>
     );
 
   // Remove timestamp and filePath from data if present (for historical results)
@@ -78,143 +84,89 @@ export default function Home() {
       : null;
 
   return (
-    <div className="container">
-      <div className="flex justify-end mb-4">
-        <Link href="/history">
-          <Button variant="outline">View History</Button>
-        </Link>
+    <>
+      <Header showHistory={true} currentTimestamp={displayTimestamp} />
+      <div className="container mx-auto px-6 py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-foreground mb-2">
+            Cryptic Benchmark Results
+          </h1>
+          <div className="flex items-center space-x-4 text-muted-foreground">
+            <span>📊 {models.length} Models Tested</span>
+            {displayTimestamp && (
+              <>
+                <span>•</span>
+                <span>🕒 Viewing from {displayTimestamp}</span>
+              </>
+            )}
+          </div>
+        </div>
+
+        <section className="mb-8">
+          <BarChart labels={labels} values={values} />
+        </section>
+
+        <div className="bg-card rounded-lg border p-6">
+          <h2 className="text-xl font-semibold mb-4">Model Performance</h2>
+          <table className="models-table w-full">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left py-3 px-4 font-medium">#</th>
+                <th className="text-left py-3 px-4 font-medium">Model</th>
+                <th className="text-left py-3 px-4 font-medium">Pass Rate</th>
+                <th className="text-left py-3 px-4 font-medium">Pass</th>
+                <th className="text-left py-3 px-4 font-medium">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {models.map((m: any, i: number) => (
+                <tr
+                  key={m.model}
+                  className="border-b border-border/50 hover:bg-muted/50"
+                >
+                  <td className="py-3 px-4 text-muted-foreground">{i + 1}</td>
+                  <td className="py-3 px-4">
+                    <Link
+                      href={`/model/${encodeURIComponent(m.model)}`}
+                      className="text-primary hover:underline font-medium"
+                    >
+                      {m.model}
+                    </Link>
+                  </td>
+                  <td className="py-3 px-4">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-16 bg-muted rounded-full h-2">
+                        <div
+                          className="bg-primary h-2 rounded-full"
+                          style={{ width: `${m.passRate * 100}%` }}
+                        ></div>
+                      </div>
+                      <span className="text-sm font-medium">
+                        {(m.passRate * 100).toFixed(1)}%
+                      </span>
+                    </div>
+                  </td>
+                  <td className="py-3 px-4 text-green-600 font-medium">
+                    {m.passCount}
+                  </td>
+                  <td className="py-3 px-4 text-muted-foreground">{m.total}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {!displayTimestamp && (
+          <div className="mt-8 pt-6 border-t border-border text-center">
+            <Link
+              href="/history"
+              className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+            >
+              📈 View Historical Results
+            </Link>
+          </div>
+        )}
       </div>
-      <h1>Cryptic Benchmark Results</h1>
-      {displayTimestamp && (
-        <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg p-4 my-4 flex items-center gap-3">
-          <span>
-            Viewing results from: <strong>{displayTimestamp}</strong>
-          </span>
-          <Link href="/">
-            <Button size="sm" variant="secondary">
-              View Current
-            </Button>
-          </Link>
-        </div>
-      )}
-      <p>Models: {models.length}</p>
-
-      <section style={{ marginTop: 18 }}>
-        <BarChart labels={labels} values={values} />
-      </section>
-
-      <table className="models-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Model</th>
-            <th>Pass Rate</th>
-            <th>Pass</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          {models.map((m: any, i: number) => (
-            <tr key={m.model}>
-              <td>{i + 1}</td>
-              <td>
-                <Link href={`/model/${encodeURIComponent(m.model)}`}>
-                  {m.model}
-                </Link>
-              </td>
-              <td>{(m.passRate * 100).toFixed(2)}%</td>
-              <td>{m.passCount}</td>
-              <td>{m.total}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {!displayTimestamp && (
-        <div className="mt-8 pt-4 border-t border-border text-center">
-          <Link
-            href="/history"
-            className="text-primary hover:underline font-medium"
-          >
-            View Historical Results
-          </Link>
-        </div>
-      )}
-
-      <style jsx>{`
-        .navigation {
-          display: flex;
-          justify-content: flex-end;
-          margin-bottom: 1rem;
-        }
-
-        .btn-history {
-          background: #6c757d;
-          color: white;
-          border: none;
-          padding: 0.5rem 1rem;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 0.9rem;
-          transition: background-color 0.2s;
-        }
-
-        .btn-history:hover {
-          background: #545b62;
-        }
-
-        .timestamp-info {
-          background: #e3f2fd;
-          border: 1px solid #bbdefb;
-          padding: 1rem;
-          border-radius: 4px;
-          margin: 1rem 0;
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-        }
-
-        .btn-current {
-          background: #28a745;
-          color: white;
-          border: none;
-          padding: 0.25rem 0.5rem;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 0.8rem;
-          transition: background-color 0.2s;
-        }
-
-        .btn-current:hover {
-          background: #1e7e34;
-        }
-
-        .history-link {
-          margin-top: 2rem;
-          text-align: center;
-          padding-top: 1rem;
-          border-top: 1px solid #eee;
-        }
-
-        .history-link a {
-          color: #007bff;
-          text-decoration: none;
-          font-weight: bold;
-        }
-
-        .history-link a:hover {
-          text-decoration: underline;
-        }
-
-        .error {
-          color: #dc3545;
-          background: #f8d7da;
-          border: 1px solid #f5c6cb;
-          padding: 1rem;
-          border-radius: 4px;
-          margin: 1rem 0;
-        }
-      `}</style>
-    </div>
+    </>
   );
 }
