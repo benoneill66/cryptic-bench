@@ -11,11 +11,11 @@ export const MODELS: ModelDef[] = [
   //   inputCostPerM: 3.0,
   //   outputCostPerM: 15.0,
   // },
-  {
-    name: "anthropic/claude-opus-4.5",
-    inputCostPerM: 5.0,
-    outputCostPerM: 25.0,
-  },
+  // {
+  //   name: "anthropic/claude-opus-4.5",
+  //   inputCostPerM: 5.0,
+  //   outputCostPerM: 25.0,
+  // },
 
   // --- Google Models ---
   // {
@@ -41,6 +41,27 @@ export const MODELS: ModelDef[] = [
   // { name: "meta/llama-3.1-405b-instruct", inputCostPerM: 3.5, outputCostPerM: 3.5 },
   // { name: "google/gemini-2.5-flash", inputCostPerM: 0.15, outputCostPerM: 0.6 },
   // { name: "deepseek/deepseek-v3", inputCostPerM: 0.27, outputCostPerM: 1.1 },
+
+  // --- MiniMax Models ---
+  {
+    name: "minimax/minimax-m2.1",
+    inputCostPerM: 0.3,
+    outputCostPerM: 1.2,
+  },
+
+  // --- Z-AI Models ---
+  {
+    name: "z-ai/glm-4.7",
+    inputCostPerM: 0.6,
+    outputCostPerM: 2.2,
+  },
+
+  // --- X-AI Models ---
+  {
+    name: "x-ai/grok-code-fast-1",
+    inputCostPerM: 0.2,
+    outputCostPerM: 1.5,
+  },
 ];
 
 export const MODEL_NAMES = MODELS.map((m) => m.name);
