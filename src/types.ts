@@ -16,4 +16,5 @@ export type ModelResult = {
   cost?: number;
   promptTokens?: number;
   completionTokens?: number;
+  reasoning?: string | null;
 };

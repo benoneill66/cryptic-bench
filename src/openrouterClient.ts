@@ -7,7 +7,6 @@ export function createClient(apiKey?: string) {
 
   const client = new OpenRouter({
     apiKey: key,
-    // Note: avoid passing unknown properties; add headers at request time if needed
   });
 
   return client;
