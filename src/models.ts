@@ -6,34 +6,34 @@ export type ModelDef = {
 
 export const MODELS: ModelDef[] = [
   // --- Anthropic Models ---
-  {
-    name: "anthropic/claude-sonnet-4.5",
-    inputCostPerM: 3.0,
-    outputCostPerM: 15.0,
-  },
   // {
-  //   name: "anthropic/claude-opus-4.5",
-  //   inputCostPerM: 5.0,
-  //   outputCostPerM: 25.0,
+  //   name: "anthropic/claude-sonnet-4.5",
+  //   inputCostPerM: 3.0,
+  //   outputCostPerM: 15.0,
   // },
+  {
+    name: "anthropic/claude-opus-4.5",
+    inputCostPerM: 5.0,
+    outputCostPerM: 25.0,
+  },
 
   // --- Google Models ---
-  {
-    name: "google/gemini-3-flash-preview",
-    inputCostPerM: 0.5,
-    outputCostPerM: 3.0,
-  },
-  {
-    name: "google/gemini-3-pro-preview",
-    inputCostPerM: 2,
-    outputCostPerM: 12,
-  },
+  // {
+  //   name: "google/gemini-3-flash-preview",
+  //   inputCostPerM: 0.5,
+  //   outputCostPerM: 3.0,
+  // },
+  // {
+  //   name: "google/gemini-3-pro-preview",
+  //   inputCostPerM: 2,
+  //   outputCostPerM: 12,
+  // },
 
   // --- OpenAI Models ---
-  { name: "openai/gpt-4o-mini", inputCostPerM: 0.15, outputCostPerM: 0.6 },
-  { name: "openai/gpt-5", inputCostPerM: 1.25, outputCostPerM: 10.0 },
-  { name: "openai/gpt-5.1", inputCostPerM: 1.5, outputCostPerM: 10.0 },
-  { name: "openai/gpt-5.2", inputCostPerM: 1.75, outputCostPerM: 14.0 },
+  // { name: "openai/gpt-4o-mini", inputCostPerM: 0.15, outputCostPerM: 0.6 },
+  // { name: "openai/gpt-5", inputCostPerM: 1.25, outputCostPerM: 10.0 },
+  // { name: "openai/gpt-5.1", inputCostPerM: 1.5, outputCostPerM: 10.0 },
+  // { name: "openai/gpt-5.2", inputCostPerM: 1.75, outputCostPerM: 14.0 },
 
   // --- Disabled Models (for reference) ---
   // { name: "openai/gpt-4o", inputCostPerM: 2.5, outputCostPerM: 10.0 },
