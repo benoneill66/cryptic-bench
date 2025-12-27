@@ -28,10 +28,11 @@ export const MODELS: ModelDef[] = [
   //   outputCostPerM: 12,
   // },
   // --- OpenAI Models ---
-  // { name: "openai/gpt-4o-mini", inputCostPerM: 0.15, outputCostPerM: 0.6 },
+  { name: "openai/gpt-4o-mini", inputCostPerM: 0.15, outputCostPerM: 0.6 },
   // { name: "openai/gpt-5", inputCostPerM: 1.25, outputCostPerM: 10.0 },
   // { name: "openai/gpt-5.1", inputCostPerM: 1.5, outputCostPerM: 10.0 },
   // { name: "openai/gpt-5.2", inputCostPerM: 1.75, outputCostPerM: 14.0 },
+  //
   // --- Disabled Models (for reference) ---
   // { name: "openai/gpt-4o", inputCostPerM: 2.5, outputCostPerM: 10.0 },
   // { name: "anthropic/claude-3.5-sonnet", inputCostPerM: 3.0, outputCostPerM: 15.0 },
@@ -51,11 +52,11 @@ export const MODELS: ModelDef[] = [
   //   outputCostPerM: 2.2,
   // },
   // // --- X-AI Models ---
-  {
-    name: "x-ai/grok-4.1-fast",
-    inputCostPerM: 0.2,
-    outputCostPerM: 0.5,
-  },
+  // {
+  //   name: "x-ai/grok-4.1-fast",
+  //   inputCostPerM: 0.2,
+  //   outputCostPerM: 0.5,
+  // },
 ];
 
 export const MODEL_NAMES = MODELS.map((m) => m.name);

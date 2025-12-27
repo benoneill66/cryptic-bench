@@ -106,23 +106,6 @@ async function main() {
     console.log("Error loading existing results:", String(err));
   }
 
-  // Parse concurrency flags
-  const concurrencyArg = args.find((a) => a.startsWith("--concurrency="));
-  const clueConcurrency = concurrencyArg
-    ? Number(concurrencyArg.split(/=(.+)/)[1])
-    : 4;
-
-  const modelConcurrencyArg = args.find((a) =>
-    a.startsWith("--model-concurrency=")
-  );
-  const modelConcurrency = modelConcurrencyArg
-    ? Math.max(1, Number(modelConcurrencyArg.split(/=(.+)/)[1]))
-    : Math.min(4, modelList.length);
-
-  console.log(
-    `Running models with model-concurrency=${modelConcurrency} and clue-concurrency=${clueConcurrency}`
-  );
-
   const modelsToRun = new Set(modelList);
 
   // Worker pool for models so we can run several models concurrently without exhausting resources
@@ -137,7 +120,6 @@ async function main() {
         model,
         apiKey,
         temperature: 0.0,
-        concurrency: clueConcurrency,
       });
       const total = res.length;
       const passCount = res.filter((r) => r.pass).length;
@@ -153,7 +135,7 @@ async function main() {
     }
   }
 
-  const modelWorkers = new Array(Math.min(modelConcurrency, modelList.length))
+  const modelWorkers = new Array(modelList.length)
     .fill(0)
     .map(() => modelWorker());
   await Promise.all(modelWorkers);
