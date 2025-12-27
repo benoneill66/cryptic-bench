@@ -4,6 +4,13 @@ import {
   ModelSummary,
 } from "@/types/benchmark";
 
+export interface Clue {
+  id: string;
+  clue: string;
+  answer: string;
+  notes: string;
+}
+
 export async function fetchLatestResults(): Promise<BenchmarkData> {
   try {
     const response = await fetch("/data/results.json");
@@ -142,4 +149,21 @@ export function getModelDisplayName(modelName: string): string {
       ?.replace(/-/g, " ")
       .replace(/\b\w/g, (l) => l.toUpperCase()) || modelName
   );
+}
+
+export async function fetchClues(): Promise<Clue[]> {
+  try {
+    const response = await fetch("/clues.json");
+    if (!response.ok) {
+      throw new Error("Failed to fetch clues");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching clues:", error);
+    throw error;
+  }
+}
+
+export function getClueById(clues: Clue[], id: string): Clue | undefined {
+  return clues.find((clue) => clue.id === id);
 }

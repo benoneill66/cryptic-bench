@@ -11,7 +11,13 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { fetchLatestResults, getModelDisplayName } from "@/lib/data";
+import {
+  fetchLatestResults,
+  getModelDisplayName,
+  fetchClues,
+  getClueById,
+  Clue,
+} from "@/lib/data";
 import { BenchmarkData, BenchmarkResult } from "@/types/benchmark";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -23,6 +29,7 @@ export default function ModelDetailPage() {
 
   const [data, setData] = useState<BenchmarkData | null>(null);
   const [modelData, setModelData] = useState<BenchmarkResult[] | null>(null);
+  const [clues, setClues] = useState<Clue[] | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,7 +38,9 @@ export default function ModelDetailPage() {
       try {
         setLoading(true);
         const latestData = await fetchLatestResults();
+        const cluesData = await fetchClues();
         setData(latestData);
+        setClues(cluesData);
 
         if (latestData[modelName]) {
           setModelData(latestData[modelName].results);
@@ -61,7 +70,7 @@ export default function ModelDetailPage() {
     );
   }
 
-  if (error || !data || !modelData) {
+  if (error || !data || !modelData || !clues) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-center min-h-[400px]">
@@ -191,9 +200,24 @@ export default function ModelDetailPage() {
                     </span>
                     <Badge variant="success">Score: {result.score}</Badge>
                   </div>
-                  <div className="space-y-1">
+                  <div className="space-y-2">
+                    <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                      <p className="text-sm font-medium text-blue-800 mb-1">
+                        Clue:
+                      </p>
+                      <p className="text-sm text-blue-700 mb-2">
+                        {getClueById(clues, result.clueId)?.clue ||
+                          `Clue ${result.clueId}`}
+                      </p>
+                      <p className="text-sm font-medium text-blue-800 mb-1">
+                        Correct Answer:
+                      </p>
+                      <p className="text-sm text-green-700 font-medium">
+                        {getClueById(clues, result.clueId)?.answer || "Unknown"}
+                      </p>
+                    </div>
                     <p className="text-sm">
-                      <span className="font-medium">Answer:</span>{" "}
+                      <span className="font-medium">LLM Answer:</span>{" "}
                       {result.answer}
                     </p>
                     <p className="text-sm text-muted-foreground">
@@ -244,9 +268,24 @@ export default function ModelDetailPage() {
                     </span>
                     <Badge variant="destructive">Score: {result.score}</Badge>
                   </div>
-                  <div className="space-y-1">
+                  <div className="space-y-2">
+                    <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                      <p className="text-sm font-medium text-red-800 mb-1">
+                        Clue:
+                      </p>
+                      <p className="text-sm text-red-700 mb-2">
+                        {getClueById(clues, result.clueId)?.clue ||
+                          `Clue ${result.clueId}`}
+                      </p>
+                      <p className="text-sm font-medium text-red-800 mb-1">
+                        Correct Answer:
+                      </p>
+                      <p className="text-sm text-green-700 font-medium">
+                        {getClueById(clues, result.clueId)?.answer || "Unknown"}
+                      </p>
+                    </div>
                     <p className="text-sm">
-                      <span className="font-medium">Answer:</span>{" "}
+                      <span className="font-medium">LLM Answer:</span>{" "}
                       {result.answer || "No answer provided"}
                     </p>
                     <p className="text-sm text-muted-foreground">
