@@ -62,7 +62,49 @@ async function main() {
   console.log("Running cryptic benchmark");
   console.log("Models:", modelList.join(", "));
   console.log("Clues:", clues.length);
+
+  // Load existing results to merge with new results
   const allResults: Record<string, any> = {};
+  try {
+    const webDataDir = path.resolve(process.cwd(), "web", "data");
+    const webPublicDataDir = path.resolve(
+      process.cwd(),
+      "web",
+      "public",
+      "data"
+    );
+    const webResultsPath = path.join(webDataDir, "results.json");
+    const webPublicResultsPath = path.join(webPublicDataDir, "results.json");
+
+    let loadedFrom = "";
+
+    // Try web/data first, then fall back to web/public/data
+    if (fs.existsSync(webResultsPath)) {
+      const existingResults = JSON.parse(
+        fs.readFileSync(webResultsPath, "utf-8")
+      );
+      Object.assign(allResults, existingResults);
+      loadedFrom = webDataDir;
+    } else if (fs.existsSync(webPublicResultsPath)) {
+      const existingResults = JSON.parse(
+        fs.readFileSync(webPublicResultsPath, "utf-8")
+      );
+      Object.assign(allResults, existingResults);
+      loadedFrom = webPublicDataDir;
+    }
+
+    if (loadedFrom) {
+      console.log(
+        `Loaded ${
+          Object.keys(allResults).length
+        } existing model results from ${loadedFrom}`
+      );
+    } else {
+      console.log("No existing results found, starting fresh");
+    }
+  } catch (err) {
+    console.log("Error loading existing results:", String(err));
+  }
 
   // Parse concurrency flags
   const concurrencyArg = args.find((a) => a.startsWith("--concurrency="));
@@ -80,6 +122,8 @@ async function main() {
   console.log(
     `Running models with model-concurrency=${modelConcurrency} and clue-concurrency=${clueConcurrency}`
   );
+
+  const modelsToRun = new Set(modelList);
 
   // Worker pool for models so we can run several models concurrently without exhausting resources
   let nextModelIdx = 0;
@@ -105,6 +149,7 @@ async function main() {
           passRate
         )}`
       );
+      console.log(`→ Updated results for model ${model}`);
     }
   }
 
@@ -157,20 +202,60 @@ async function main() {
   // test mode).
   try {
     const webDataDir = path.resolve(process.cwd(), "web", "data");
+    const webPublicDataDir = path.resolve(
+      process.cwd(),
+      "web",
+      "public",
+      "data"
+    );
     const webResultsPath = path.join(webDataDir, "results.json");
+    const webPublicResultsPath = path.join(webPublicDataDir, "results.json");
+
     ensureDirForFile(webResultsPath);
+    ensureDirForFile(webPublicResultsPath);
+
     saveJSON(webResultsPath, allResults);
+    saveJSON(webPublicResultsPath, allResults);
+
     if (isTest) {
       const webTestPath = path.join(webDataDir, "results_test.json");
+      const webPublicTestPath = path.join(
+        webPublicDataDir,
+        "results_test.json"
+      );
       saveJSON(webTestPath, allResults);
+      saveJSON(webPublicTestPath, allResults);
     }
+
     // timestamped copy
     const ts = new Date().toISOString().replace(/[:.]/g, "-");
     const webTsPath = path.join(webDataDir, `results-${ts}.json`);
+    const webPublicTsPath = path.join(webPublicDataDir, `results-${ts}.json`);
     saveJSON(webTsPath, allResults);
-    console.log(`Also saved copy to ${webDataDir}`);
+    saveJSON(webPublicTsPath, allResults);
+
+    console.log(`Also saved copies to ${webDataDir} and ${webPublicDataDir}`);
   } catch (err) {
     console.error("Failed to save web copy of results:", err);
+  }
+
+  // Summary of merge operation
+  const totalModels = Object.keys(allResults).length;
+  const preservedModels = Object.keys(allResults).filter(
+    (m) => !modelsToRun.has(m)
+  );
+  const updatedModels = Object.keys(allResults).filter((m) =>
+    modelsToRun.has(m)
+  );
+
+  console.log("\n=== Results Merge Summary ===");
+  console.log(`Total models in results: ${totalModels}`);
+  console.log(`Models updated in this run: ${updatedModels.length}`);
+  if (preservedModels.length > 0) {
+    console.log(
+      `Models preserved from previous runs: ${preservedModels.length}`
+    );
+    console.log(`Preserved: ${preservedModels.join(", ")}`);
   }
 }
 
